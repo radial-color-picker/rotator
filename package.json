@@ -1,0 +1,23 @@
+{
+  "name": "@radial-color-picker/rotator",
+  "version": "0.1.0",
+  "description": "Rotator",
+  "main": "dist/rotator.cjs.js",
+  "module": "dist/rotator.esm.js",
+  "browser": "dist/rotator.umd.js",
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^0.57.1",
+    "rollup-plugin-butternut": "^0.1.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:radial-color-picker/rotator.git",
+  "author": "Rosen Kanev <rkunev@gmail.com>",
+  "license": "MIT"
+}
