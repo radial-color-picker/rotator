@@ -185,9 +185,9 @@ export default class Rotator {
         }
     }
 
-    setAngleFromEvent({ clientX: x, clientY: y }) {
+    setAngleFromEvent(ev) {
         const newAngle = getRotationFromCoords(
-            { x, y },
+            { x: ev.clientX, y: ev.clientY },
             this.element.getBoundingClientRect()
         );
 
