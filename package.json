@@ -1,6 +1,6 @@
 {
   "name": "@radial-color-picker/rotator",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Rotator",
   "main": "dist/rotator.cjs.js",
   "module": "dist/rotator.esm.js",
@@ -9,7 +9,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
-    "rollup": "^0.57.1",
+    "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-butternut": "^0.1.0"
   },
