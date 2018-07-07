@@ -29,9 +29,11 @@ export default class Rotator {
     set angle(value) {
         const rads = value * TO_RADIANS;
 
-        this._angle = rads;
-        this.virtualAngle = rads;
-        this.updateCSS();
+        if (rads !== this._angle) {
+            this._angle = rads;
+            this.virtualAngle = rads;
+            this.updateCSS();
+        }
     }
 
     initOptions(options) {
