@@ -1,5 +1,5 @@
 import { TO_DEGREES, TO_RADIANS, HALF_DEGREE } from './constants.js';
-import { getRotationFromCoords, diffBetweenAngles, normalizeAngle, noop } from './utils.js';
+import { getRotationFromCoords, normalizeAngle, noop } from './utils.js';
 
 /**
  * Modified version of Denis Radin's
@@ -39,10 +39,6 @@ export default class Rotator {
     initOptions(options) {
         const defaults = {
             angle: 0,
-            speed: 0,
-            inertia: 0,
-            minimalSpeed: HALF_DEGREE,
-            minimalAngleChange: HALF_DEGREE,
         };
 
         options = options || defaults;
@@ -53,12 +49,8 @@ export default class Rotator {
         this.onDragStart = options.onDragStart || noop;
 
         this.angle = options.angle || defaults.angle;
-        this.speed = options.speed * TO_RADIANS || defaults.speed;
 
-        this.inertia = options.inertia || defaults.inertia;
-        this.minimalSpeed = options.minimalSpeed || defaults.minimalSpeed;
-        this.lastAppliedAngle = this.virtualAngle = this._angle = options.angle * TO_RADIANS || defaults.angle;
-        this.minimalAngleChange = options.minimalAngleChange || defaults.minimalAngleChange;
+        this.virtualAngle = this._angle = options.angle * TO_RADIANS || defaults.angle;
     }
 
     bindHandlers() {
@@ -99,7 +91,6 @@ export default class Rotator {
     };
 
     stop() {
-        this.speed = 0;
         this.onRotationStop();
     };
 
@@ -147,44 +138,15 @@ export default class Rotator {
             }
 
             this._angle = this.virtualAngle;
-            this.applySpeed();
-            this.applyInertia();
 
-            // Update rotation until the angle difference between prev and current angle is lower than the minimal angle change
-            if (Math.abs(this.lastAppliedAngle - this._angle) >= this.minimalAngleChange) {
-                this.updateCSS();
+            this.updateCSS();
 
-                if (this.onRotate !== undefined) {
-                    this.onRotate(this.angle);
-                }
-
-                this.lastAppliedAngle = this._angle;
+            if (this.onRotate !== undefined) {
+                this.onRotate(this.angle);
             }
         }
 
         this.cancelRafToken = window.requestAnimationFrame(this.update);
-    }
-
-    applySpeed() {
-        if (this.inertia > 0 && this.speed !== 0 && this.active === false) {
-            this.virtualAngle += this.speed;
-        }
-    }
-
-    applyInertia() {
-        if (this.inertia > 0) {
-            if (Math.abs(this.speed) >= this.minimalSpeed) {
-                this.speed = this.speed * this.inertia;
-
-                // Execute onStop callback when speed is less than the given threshold
-                if (this.active === false && Math.abs(this.speed) < this.minimalSpeed) {
-                    this.onStop();
-                }
-            } else {
-                // Stop rotation when rotation speed gets below a given threshold
-                this.speed = 0;
-            }
-        }
     }
 
     setAngleFromEvent(ev) {
@@ -208,11 +170,9 @@ export default class Rotator {
         const oldAngle = this.virtualAngle;
         this.mouseDiff = newMouseAngle - this.lastMouseAngle;
         this.virtualAngle = this.lastElementAngle + this.mouseDiff;
-        this.speed = diffBetweenAngles(this.virtualAngle, oldAngle);
     }
 
     initDrag() {
-        this.speed = 0;
         this.lastMouseAngle = undefined;
         this.lastElementAngle = undefined;
         this.lastMouseEvent = undefined;
