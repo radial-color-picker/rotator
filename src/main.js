@@ -39,9 +39,8 @@ export default class Rotator {
         options = options || defaults;
 
         this.onRotate = options.onRotate || noop;
-        this.onStop = options.onStop || noop;
-        this.onDragStop = options.onDragStop || noop;
         this.onDragStart = options.onDragStart || noop;
+        this.onDragStop = options.onDragStop || noop;
 
         this.angle = options.angle || defaults.angle;
         this._angle = options.angle * TO_RADIANS || defaults.angle;
@@ -78,12 +77,8 @@ export default class Rotator {
     }
 
     destroy() {
-        this.stop();
-        this.removeListeners();
-    };
-
-    stop() {
         this.onRotationStop();
+        this.removeListeners();
     };
 
     onRotationStart(event) {
