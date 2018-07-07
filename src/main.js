@@ -78,7 +78,6 @@ export default class Rotator {
 
     onRotationStart(event) {
         this.initDrag();
-        this.active = true;
         this.onDragStart(event);
     };
 
@@ -129,6 +128,7 @@ export default class Rotator {
     }
 
     initDrag() {
+        this.active = true;
         this.lastMouseAngle = undefined;
         this.lastElementAngle = undefined;
     }
