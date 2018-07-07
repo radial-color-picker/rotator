@@ -7,11 +7,8 @@ import { getRotationFromCoords, normalizeAngle, noop } from './utils.js';
  */
 export default class Rotator {
     constructor(element, options) {
-        this.last = 0;
-        this.cancelRafToken = null;
         this.active = false;
         this._angle = 0;
-        this.virtualAngle = 0;
         this.element = element;
         this.element.style.willChange = 'transform';
 
@@ -19,7 +16,6 @@ export default class Rotator {
         this.updateCSS();
         this.bindHandlers();
         this.addListeners();
-        this.update();
     }
 
     get angle() {
@@ -31,7 +27,6 @@ export default class Rotator {
 
         if (rads !== this._angle) {
             this._angle = rads;
-            this.virtualAngle = rads;
             this.updateCSS();
         }
     }
@@ -49,12 +44,10 @@ export default class Rotator {
         this.onDragStart = options.onDragStart || noop;
 
         this.angle = options.angle || defaults.angle;
-
-        this.virtualAngle = this._angle = options.angle * TO_RADIANS || defaults.angle;
+        this._angle = options.angle * TO_RADIANS || defaults.angle;
     }
 
     bindHandlers() {
-        this.update = this.update.bind(this);
         this.onRotationStart = this.onRotationStart.bind(this);
         this.onRotationStop = this.onRotationStop.bind(this);
         this.onRotated = this.onRotated.bind(this);
@@ -87,7 +80,6 @@ export default class Rotator {
     destroy() {
         this.stop();
         this.removeListeners();
-        window.cancelAnimationFrame(this.cancelRafToken);
     };
 
     stop() {
@@ -113,40 +105,16 @@ export default class Rotator {
         event.preventDefault();
 
         if (this.active) {
-            if (event.targetTouches !== undefined && event.targetTouches[0] !== undefined) {
-                this.lastMouseEvent = {
-                    x: event.targetTouches[0].clientX,
-                    y: event.targetTouches[0].clientY,
-                };
-            } else {
-                this.lastMouseEvent = {
-                    x: event.clientX,
-                    y: event.clientY,
-                };
-            }
-        }
-    }
+            const point = event.targetTouches ? event.targetTouches[0] : event;
 
-    update(now) {
-        // Calculating angle on requestAnimationFrame only for optimisation purposes
-        // 8ms is roughly 120fps
-        if (!this.last || now - this.last >= 8) {
-            this.last = now;
-
-            if (this.lastMouseEvent !== undefined && this.active) {
-                this.updateAngleToMouse(this.lastMouseEvent);
-            }
-
-            this._angle = this.virtualAngle;
+            this.updateAngleToMouse({
+                x: point.clientX,
+                y: point.clientY,
+            });
 
             this.updateCSS();
-
-            if (this.onRotate !== undefined) {
-                this.onRotate(this.angle);
-            }
+            this.onRotate(this.angle);
         }
-
-        this.cancelRafToken = window.requestAnimationFrame(this.update);
     }
 
     setAngleFromEvent(ev) {
@@ -162,20 +130,17 @@ export default class Rotator {
         const rect = this.element.getBoundingClientRect();
         const newMouseAngle = getRotationFromCoords(newPoint, rect);
 
-        if (this.lastMouseAngle === undefined) {
-            this.lastElementAngle = this.virtualAngle;
+        if (!this.lastMouseAngle) {
+            this.lastElementAngle = this._angle;
             this.lastMouseAngle = newMouseAngle;
         }
 
-        const oldAngle = this.virtualAngle;
-        this.mouseDiff = newMouseAngle - this.lastMouseAngle;
-        this.virtualAngle = this.lastElementAngle + this.mouseDiff;
+        this._angle = this.lastElementAngle + newMouseAngle - this.lastMouseAngle;
     }
 
     initDrag() {
         this.lastMouseAngle = undefined;
         this.lastElementAngle = undefined;
-        this.lastMouseEvent = undefined;
     }
 
     updateCSS() {
