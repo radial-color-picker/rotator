@@ -1,4 +1,3 @@
-import { TO_DEGREES, TO_RADIANS, HALF_DEGREE } from './constants.js';
 import { getRotationFromCoords, normalizeAngle, noop } from './utils.js';
 
 /**
@@ -19,14 +18,12 @@ export default class Rotator {
     }
 
     get angle() {
-        return normalizeAngle(this._angle * TO_DEGREES);
+        return this._angle;
     }
 
     set angle(value) {
-        const rads = value * TO_RADIANS;
-
-        if (rads !== this._angle) {
-            this._angle = rads;
+        if (this._angle !== value) {
+            this._angle = value;
             this.updateCSS();
         }
     }
@@ -38,7 +35,7 @@ export default class Rotator {
         this.onDragStart = options.onDragStart || noop;
         this.onDragStop = options.onDragStop || noop;
 
-        this._angle = options.angle ? options.angle * TO_RADIANS : 0;
+        this._angle = options.angle || 0;
     }
 
     bindHandlers() {
@@ -102,7 +99,7 @@ export default class Rotator {
             });
 
             this.updateCSS();
-            this.onRotate(this.angle);
+            this.onRotate(this._angle);
         }
     }
 
@@ -112,19 +109,27 @@ export default class Rotator {
             this.element.getBoundingClientRect()
         );
 
-        this.angle = newAngle * TO_DEGREES;
+        // atan2 gives values between -180 to 180 deg
+        // add 90 degrees offset so that it starts from 0 deg (or red)
+        // and then normalize negative values
+        this._angle = normalizeAngle(newAngle + 90);
+
+        this.updateCSS();
+        this.onRotate(this._angle);
     }
 
     updateAngleToMouse(newPoint) {
-        const rect = this.element.getBoundingClientRect();
-        const newMouseAngle = getRotationFromCoords(newPoint, rect);
+        const newMouseAngle = getRotationFromCoords(
+            newPoint,
+            this.element.getBoundingClientRect()
+        );
 
         if (!this.lastMouseAngle) {
             this.lastElementAngle = this._angle;
             this.lastMouseAngle = newMouseAngle;
         }
 
-        this._angle = this.lastElementAngle + newMouseAngle - this.lastMouseAngle;
+        this._angle = normalizeAngle(this.lastElementAngle + newMouseAngle - this.lastMouseAngle);
     }
 
     initDrag() {
@@ -134,6 +139,6 @@ export default class Rotator {
     }
 
     updateCSS() {
-        this.element.style.transform = `rotate(${this._angle}rad)`;
+        this.element.style.transform = `rotate(${this._angle}deg)`;
     }
 }
