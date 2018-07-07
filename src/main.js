@@ -32,24 +32,19 @@ export default class Rotator {
     }
 
     initOptions(options) {
-        const defaults = {
-            angle: 0,
-        };
-
-        options = options || defaults;
+        options = options || {};
 
         this.onRotate = options.onRotate || noop;
         this.onDragStart = options.onDragStart || noop;
         this.onDragStop = options.onDragStop || noop;
 
-        this.angle = options.angle || defaults.angle;
-        this._angle = options.angle * TO_RADIANS || defaults.angle;
+        this._angle = options.angle ? options.angle * TO_RADIANS : 0;
     }
 
     bindHandlers() {
         this.onRotationStart = this.onRotationStart.bind(this);
-        this.onRotationStop = this.onRotationStop.bind(this);
         this.onRotated = this.onRotated.bind(this);
+        this.onRotationStop = this.onRotationStop.bind(this);
     }
 
     addListeners() {
