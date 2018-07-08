@@ -37,6 +37,12 @@ new Rotator(el, {
 
 Please see [Releases][link-releases] for more information on what has changed recently.
 
+## Contributing
+
+If you're interested in the project you can help out with feature requests, bugfixes, documentation improvements or any other helpful contributions. You can use the issue list of this repo for bug reports and feature requests and as well as for questions and support.
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+
 ## Credits
 
 - [Rosen Kanev][link-author]
