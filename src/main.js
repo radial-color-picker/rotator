@@ -88,9 +88,9 @@ export default class Rotator {
     }
 
     onRotated(event) {
-        event.preventDefault();
-
         if (this.active) {
+            event.preventDefault();
+
             const point = event.targetTouches ? event.targetTouches[0] : event;
 
             this.updateAngleToMouse({
