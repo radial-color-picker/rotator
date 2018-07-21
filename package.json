@@ -1,7 +1,7 @@
 {
   "name": "@radial-color-picker/rotator",
-  "version": "0.4.0",
-  "description": "Rotator",
+  "version": "1.0.0-beta.1",
+  "description": "Minimal, framework-agnostic companion plugin for managing the rotator of the Radial Color Picker.",
   "main": "dist/rotator.cjs.js",
   "module": "dist/rotator.esm.js",
   "browser": "dist/rotator.umd.js",
