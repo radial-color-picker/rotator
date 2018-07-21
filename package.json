@@ -9,7 +9,7 @@
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-preset-env": "1.6.1",
-    "rollup": "0.62.0",
+    "rollup": "0.63.4",
     "rollup-plugin-babel": "3.0.7",
     "rollup-plugin-butternut": "0.1.0"
   },
