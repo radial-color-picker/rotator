@@ -25,6 +25,8 @@ $ yarn add @radial-color-picker/rotator
 ## Usage
 
 ```js
+import Rotator from '@radial-color-picker/rotator';
+
 new Rotator(el, {
     angle: 0, // initial angle
     onRotate: onRotate, // callback to subscribe for rotation changes
@@ -54,7 +56,7 @@ This plugin is a modernized and heavily modified version of Denis Radin's plugin
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-[Back To Top](#user-content-introduction)
+[Back To Top](#user-content-radial-color-picker---rotator)
 
 [link-propeller]: https://github.com/PixelsCommander/Propeller
 [link-author]: https://github.com/rkunev
