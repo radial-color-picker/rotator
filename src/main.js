@@ -23,7 +23,7 @@ export default class Rotator {
 
     set angle(value) {
         if (this._angle !== value) {
-            this._angle = value;
+            this._angle = normalizeAngle(value);
             this.updateCSS();
         }
     }
