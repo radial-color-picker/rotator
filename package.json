@@ -11,11 +11,12 @@
     "babel-preset-env": "1.6.1",
     "rollup": "0.63.4",
     "rollup-plugin-babel": "3.0.7",
-    "rollup-plugin-butternut": "0.1.0"
+    "rollup-plugin-butternut": "0.1.0",
+    "rollup-plugin-serve": "0.4.2"
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "rollup -c rollup.config.dev.js -w"
   },
   "files": [
     "dist"
