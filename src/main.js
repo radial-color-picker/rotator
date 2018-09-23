@@ -46,26 +46,26 @@ export default class Rotator {
 
     addListeners() {
         this.element.addEventListener('touchstart', this.onRotationStart, { passive: true });
-        this.element.addEventListener('touchmove', this.onRotated);
-        this.element.addEventListener('touchend', this.onRotationStop, { passive: true });
-        this.element.addEventListener('touchcancel', this.onRotationStop, { passive: true });
+        document.addEventListener('touchmove', this.onRotated, { passive: false });
+        document.addEventListener('touchend', this.onRotationStop, { passive: true });
+        document.addEventListener('touchcancel', this.onRotationStop, { passive: true });
 
         this.element.addEventListener('mousedown', this.onRotationStart, { passive: true });
-        this.element.addEventListener('mousemove', this.onRotated);
-        this.element.addEventListener('mouseup', this.onRotationStop, { passive: true });
-        this.element.addEventListener('mouseleave', this.onRotationStop);
+        document.addEventListener('mousemove', this.onRotated, { passive: false });
+        document.addEventListener('mouseup', this.onRotationStop, { passive: true });
+        document.addEventListener('mouseleave', this.onRotationStop, { passive: false });
     }
 
     removeListeners() {
         this.element.removeEventListener('touchstart', this.onRotationStart);
-        this.element.removeEventListener('touchmove', this.onRotated);
-        this.element.removeEventListener('touchend', this.onRotationStop);
-        this.element.removeEventListener('touchcancel', this.onRotationStop);
+        document.removeEventListener('touchmove', this.onRotated);
+        document.removeEventListener('touchend', this.onRotationStop);
+        document.removeEventListener('touchcancel', this.onRotationStop);
 
         this.element.removeEventListener('mousedown', this.onRotationStart);
-        this.element.removeEventListener('mousemove', this.onRotated);
-        this.element.removeEventListener('mouseup', this.onRotationStop);
-        this.element.removeEventListener('mouseleave', this.onRotationStop);
+        document.removeEventListener('mousemove', this.onRotated);
+        document.removeEventListener('mouseup', this.onRotationStop);
+        document.removeEventListener('mouseleave', this.onRotationStop);
     }
 
     destroy() {
