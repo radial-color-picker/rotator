@@ -1,6 +1,6 @@
-import butternut from 'rollup-plugin-butternut';
+import minify from 'rollup-plugin-babel-minify';
 import babel from 'rollup-plugin-babel';
-import pkg from './package.json'
+import pkg from './package.json';
 
 const banner = `/**
  * radial-color-picker/rotator v${pkg.version}
@@ -16,7 +16,7 @@ export default [
         input: 'src/main.js',
         output: {
             name: 'rotator',
-            file: 'dist/rotator.umd.js',
+            file: pkg.browser,
             format: 'umd',
             banner
         },
@@ -38,14 +38,17 @@ export default [
             babel({
                 exclude: ['node_modules/**']
             }),
-            butternut()
+            minify({
+                comments: false,
+                bannerNewLine: true
+            })
         ]
     },
     {
         input: 'src/main.js',
         output: [
-            { file: 'dist/rotator.cjs.js', format: 'cjs', banner },
-            { file: 'dist/rotator.esm.js', format: 'es', banner }
+            { file: pkg.main, format: 'cjs', banner },
+            { file: pkg.module, format: 'es', banner }
         ],
         plugins: [
             babel({
