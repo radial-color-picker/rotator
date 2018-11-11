@@ -15,7 +15,7 @@ export default [
     {
         input: 'src/main.js',
         output: {
-            name: 'rotator',
+            name: 'Rotator',
             file: pkg.browser,
             format: 'umd',
             banner
@@ -29,7 +29,7 @@ export default [
     {
         input: 'src/main.js',
         output: {
-            name: 'rotator',
+            name: 'Rotator',
             file: 'dist/rotator.umd.min.js',
             format: 'umd',
             banner
