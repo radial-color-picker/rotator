@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c rollup.config.dev.js -w"
+    "dev": "rollup -c rollup.config.dev.js -w",
+    "prepublishOnly": "yarn build"
   },
   "files": [
     "dist"
