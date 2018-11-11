@@ -7,12 +7,12 @@
   "browser": "dist/rotator.umd.js",
   "dependencies": {},
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-preset-env": "1.6.1",
-    "rollup": "0.63.4",
-    "rollup-plugin-babel": "3.0.7",
-    "rollup-plugin-butternut": "0.1.0",
-    "rollup-plugin-serve": "0.4.2"
+    "@babel/core": "7.1.5",
+    "@babel/preset-env": "7.1.5",
+    "rollup": "0.67.1",
+    "rollup-plugin-babel": "4.0.3",
+    "rollup-plugin-babel-minify": "6.1.1",
+    "rollup-plugin-serve": "0.6.0"
   },
   "scripts": {
     "build": "rollup -c",
