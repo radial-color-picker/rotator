@@ -1,7 +1,7 @@
 # Using experimental CircleCI orbs
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.0.0
+  cypress: cypress-io/cypress@0.6.0
 workflows:
   build:
     jobs:
