@@ -6,7 +6,6 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          record: false
           start: npm start
           filters:
             branches:
