@@ -1,0 +1,11 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.0.0
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          start: npm start
+          filters:
+            branches:
+              only: "feat/e2e-testing-with-cypress"
