@@ -13,7 +13,7 @@ describe('Rotator initializes correctly', () => {
 });
 
 describe('Rotator works correctly', () => {
-    it('rotates correctly by 90 degrees', () => {
+    it('rotates by 90 degrees', () => {
         cy.visit('/');
 
         cy.get('#protractor')
@@ -24,5 +24,24 @@ describe('Rotator works correctly', () => {
 
         cy.get('#tip-value')
             .should('contain', '90');
+    });
+
+    it('resets back to 0 degrees', () => {
+        cy.visit('/');
+
+        cy.get('#protractor')
+            .trigger('mousedown', 'topRight')
+            .trigger('mousemove', 'topRight')
+            .trigger('mousemove', 'topLeft', { force: true })
+            .trigger('mouseup', 'topLeft', { force: true });
+
+        cy.get('#tip-value')
+            .should('contain', '90');
+
+        cy.get('#tip')
+            .click();
+
+        cy.get('#tip-value')
+            .should('contain', '0');
     });
 });
