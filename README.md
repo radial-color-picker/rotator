@@ -10,6 +10,9 @@
     <a href="https://www.npmjs.com/package/@radial-color-picker/rotator">
         <img src="https://img.shields.io/npm/l/@radial-color-picker/rotator.svg" alt="License">
     </a>
+    <a href="https://circleci.com/gh/radial-color-picker/rotator/tree/feat%2Fe2e-testing-with-cypress">
+        <img src="https://circleci.com/gh/radial-color-picker/rotator/tree/feat%2Fe2e-testing-with-cypress.svg?style=shield" alt="CircleCI">
+    </a>
 </p>
 
 Minimal, framework-agnostic companion plugin for managing the rotator of the Radial Color Picker.
