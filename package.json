@@ -21,7 +21,6 @@
     "build": "rollup -c",
     "test": "cypress run",
     "test:open": "cypress open",
-    "e2e": "start-test 8080 test:open",
     "ci": "start-test 8080",
     "prepublishOnly": "yarn build"
   },
