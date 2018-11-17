@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     branches:
-      only: "feat/e2e-testing-with-cypress"
+      only: "canary"
     docker:
       - image: cypress/base:10
         environment:
