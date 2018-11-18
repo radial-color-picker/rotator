@@ -23,7 +23,7 @@
     "test": "cypress run",
     "test:open": "cypress open",
     "ci": "start-test 8080",
-    "lint": "prettier --write \"**/*.js\"",
+    "lint": "prettier --write '**/*.+(js|json|css)'",
     "prepublishOnly": "yarn build"
   },
   "files": [
