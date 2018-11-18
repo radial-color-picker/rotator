@@ -2,8 +2,7 @@ describe('Rotator initializes correctly', () => {
     it('starts with correct DOM', () => {
         cy.visit('/');
 
-        cy.get('#tip-value')
-            .should('contain', '0');
+        cy.get('#tip-value').should('contain', '0');
 
         cy.get('#protractor')
             .should('have.prop', 'style')
@@ -22,8 +21,7 @@ describe('Rotator works correctly', () => {
             .trigger('mousemove', 'topLeft', { force: true })
             .trigger('mouseup', 'topLeft', { force: true });
 
-        cy.get('#tip-value')
-            .should('contain', '90');
+        cy.get('#tip-value').should('contain', '90');
     });
 
     it('resets back to 0 degrees', () => {
@@ -35,13 +33,10 @@ describe('Rotator works correctly', () => {
             .trigger('mousemove', 'topLeft', { force: true })
             .trigger('mouseup', 'topLeft', { force: true });
 
-        cy.get('#tip-value')
-            .should('contain', '90');
+        cy.get('#tip-value').should('contain', '90');
 
-        cy.get('#tip')
-            .click();
+        cy.get('#tip').click();
 
-        cy.get('#tip-value')
-            .should('contain', '0');
+        cy.get('#tip-value').should('contain', '0');
     });
 });

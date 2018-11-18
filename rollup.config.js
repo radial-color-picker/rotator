@@ -18,13 +18,13 @@ export default [
             name: 'Rotator',
             file: pkg.browser,
             format: 'umd',
-            banner
+            banner,
         },
         plugins: [
             babel({
-                exclude: ['node_modules/**']
-            })
-        ]
+                exclude: ['node_modules/**'],
+            }),
+        ],
     },
     {
         input: 'src/main.js',
@@ -32,28 +32,28 @@ export default [
             name: 'Rotator',
             file: 'dist/rotator.umd.min.js',
             format: 'umd',
-            banner
+            banner,
         },
         plugins: [
             babel({
-                exclude: ['node_modules/**']
+                exclude: ['node_modules/**'],
             }),
             minify({
                 comments: false,
-                bannerNewLine: true
-            })
-        ]
+                bannerNewLine: true,
+            }),
+        ],
     },
     {
         input: 'src/main.js',
         output: [
             { file: pkg.main, format: 'cjs', banner },
-            { file: pkg.module, format: 'es', banner }
+            { file: pkg.module, format: 'es', banner },
         ],
         plugins: [
             babel({
-                exclude: ['node_modules/**']
-            })
-        ]
-    }
+                exclude: ['node_modules/**'],
+            }),
+        ],
+    },
 ];

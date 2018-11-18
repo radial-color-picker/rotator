@@ -71,12 +71,12 @@ export default class Rotator {
     destroy() {
         this.onRotationStop();
         this.removeListeners();
-    };
+    }
 
     onRotationStart(event) {
         this.initDrag();
         this.onDragStart(event);
-    };
+    }
 
     onRotationStop() {
         if (this.active) {
@@ -119,10 +119,7 @@ export default class Rotator {
     }
 
     updateAngleToMouse(newPoint) {
-        const newMouseAngle = getRotationFromCoords(
-            newPoint,
-            this.element.getBoundingClientRect()
-        );
+        const newMouseAngle = getRotationFromCoords(newPoint, this.element.getBoundingClientRect());
 
         if (!this.lastMouseAngle) {
             this.lastElementAngle = this._angle;

@@ -7,22 +7,22 @@ export default [
             {
                 file: 'sandbox/dist/rotator.esm.js',
                 format: 'es',
-                sourcemap: 'inline'
-            }
-        ]
+                sourcemap: 'inline',
+            },
+        ],
     },
     {
         input: 'sandbox/src/main.js',
         output: {
             file: 'sandbox/dist/bundle.js',
             format: 'iife',
-            sourcemap: 'inline'
+            sourcemap: 'inline',
         },
         plugins: [
             serve({
                 port: 8080,
-                contentBase: ['sandbox']
-            })
-        ]
-    }
+                contentBase: ['sandbox'],
+            }),
+        ],
+    },
 ];
