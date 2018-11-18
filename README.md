@@ -10,8 +10,8 @@
     <a href="https://www.npmjs.com/package/@radial-color-picker/rotator">
         <img src="https://img.shields.io/npm/l/@radial-color-picker/rotator.svg" alt="License">
     </a>
-    <a href="https://circleci.com/gh/radial-color-picker/rotator/tree/canary">
-        <img src="https://circleci.com/gh/radial-color-picker/rotator/tree/canary.svg?style=shield" alt="CircleCI">
+    <a href="https://circleci.com/gh/radial-color-picker/rotator">
+        <img src="https://circleci.com/gh/radial-color-picker/rotator.svg?style=shield" alt="CircleCI">
     </a>
 </p>
 
