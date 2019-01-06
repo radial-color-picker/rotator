@@ -16,10 +16,10 @@ describe('Rotator works correctly', () => {
         cy.visit('/');
 
         cy.get('#protractor')
-            .trigger('mousedown', 'topRight')
-            .trigger('mousemove', 'topRight')
-            .trigger('mousemove', 'topLeft', { force: true })
-            .trigger('mouseup', 'topLeft', { force: true });
+            .trigger('touchstart', 'topRight')
+            .trigger('touchmove', 'topRight')
+            .trigger('touchmove', 'topLeft', { force: true })
+            .trigger('touchend', 'topLeft', { force: true });
 
         cy.get('#tip-value').should('contain', '90');
     });
@@ -28,10 +28,10 @@ describe('Rotator works correctly', () => {
         cy.visit('/');
 
         cy.get('#protractor')
-            .trigger('mousedown', 'topRight')
-            .trigger('mousemove', 'topRight')
-            .trigger('mousemove', 'topLeft', { force: true })
-            .trigger('mouseup', 'topLeft', { force: true });
+            .trigger('touchstart', 'topRight')
+            .trigger('touchmove', 'topRight')
+            .trigger('touchmove', 'topLeft', { force: true })
+            .trigger('touchend', 'topLeft', { force: true });
 
         cy.get('#tip-value').should('contain', '90');
 

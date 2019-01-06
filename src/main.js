@@ -74,8 +74,10 @@ export default class Rotator {
     }
 
     onRotationStart(event) {
-        this.initDrag();
-        this.onDragStart(event);
+        if (event.type === 'touchstart' || event.button === 0) {
+            this.initDrag();
+            this.onDragStart(event);
+        }
     }
 
     onRotationStop() {
