@@ -4,7 +4,6 @@
   "description": "Minimal, framework-agnostic companion plugin for managing the rotator of the Radial Color Picker.",
   "main": "dist/rotator.cjs.js",
   "module": "dist/rotator.esm.js",
-  "browser": "dist/rotator.umd.js",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.2.2",
