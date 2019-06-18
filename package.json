@@ -4,18 +4,9 @@
   "description": "Minimal, framework-agnostic companion plugin for managing the rotator of the Radial Color Picker.",
   "main": "dist/rotator.cjs.js",
   "module": "dist/rotator.esm.js",
-  "dependencies": {},
-  "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.2.3",
-    "cypress": "3.1.4",
-    "prettier": "1.15.3",
-    "rollup": "1.0.2",
-    "rollup-plugin-babel": "4.2.0",
-    "rollup-plugin-babel-minify": "6.2.0",
-    "rollup-plugin-serve": "0.6.1",
-    "start-server-and-test": "1.7.11"
-  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "rollup -c rollup.config.dev.js -w",
     "build": "rollup -c",
@@ -25,9 +16,18 @@
     "ci": "start-test 8080",
     "prepublishOnly": "yarn build"
   },
-  "files": [
-    "dist"
-  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "cypress": "3.3.1",
+    "prettier": "1.18.2",
+    "rollup": "1.15.6",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-serve": "1.0.1",
+    "rollup-plugin-terser": "5.0.0",
+    "start-server-and-test": "1.9.1"
+  },
   "repository": "git@github.com:radial-color-picker/rotator.git",
   "author": "Rosen Kanev <rkunev@gmail.com>",
   "license": "MIT"
