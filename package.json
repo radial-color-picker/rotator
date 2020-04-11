@@ -20,13 +20,13 @@
   "devDependencies": {
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
-    "cypress": "3.3.1",
+    "cypress": "4.3.0",
     "prettier": "1.18.2",
     "rollup": "1.15.6",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-serve": "1.0.1",
     "rollup-plugin-terser": "5.0.0",
-    "start-server-and-test": "1.9.1"
+    "start-server-and-test": "1.10.11"
   },
   "repository": "git@github.com:radial-color-picker/rotator.git",
   "author": "Rosen Kanev <rkunev@gmail.com>",
