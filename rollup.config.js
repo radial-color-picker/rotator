@@ -22,9 +22,7 @@ export default [
             format: 'umd',
             banner,
         },
-        plugins: [
-            babel(),
-        ],
+        plugins: [babel()],
     },
     {
         input: 'src/main.js',
@@ -43,8 +41,8 @@ export default [
                             // multiline comment
                             return value.includes('Copyright (c) 2018-present');
                         }
-                    }
-                }
+                    },
+                },
             }),
         ],
     },
@@ -54,8 +52,6 @@ export default [
             { file: outputDir + '.cjs.js', format: 'cjs', banner },
             { file: outputDir + '.esm.js', format: 'esm', banner },
         ],
-        plugins: [
-            babel(),
-        ],
+        plugins: [babel()],
     },
 ];
