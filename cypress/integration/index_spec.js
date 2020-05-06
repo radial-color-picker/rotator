@@ -12,28 +12,28 @@ describe('Rotator initializes correctly', () => {
 });
 
 describe('Rotator works correctly', () => {
-    it('rotates by 90 degrees', () => {
+    it('rotates by 180 degrees', () => {
         cy.visit('/');
 
         cy.get('#protractor')
-            .trigger('touchstart', 'topRight')
-            .trigger('touchmove', 'topRight')
-            .trigger('touchmove', 'topLeft', { force: true })
-            .trigger('touchend', 'topLeft', { force: true });
+            .trigger('touchstart', 'bottom')
+            .trigger('touchmove', 'bottom')
+            .trigger('touchmove', 'bottom')
+            .trigger('touchend', 'bottom');
 
-        cy.get('#tip-value').should('contain', '90');
+        cy.get('#tip-value').should('contain', '180');
     });
 
     it('resets back to 0 degrees', () => {
         cy.visit('/');
 
         cy.get('#protractor')
-            .trigger('touchstart', 'topRight')
-            .trigger('touchmove', 'topRight')
-            .trigger('touchmove', 'topLeft', { force: true })
-            .trigger('touchend', 'topLeft', { force: true });
+            .trigger('touchstart', 'bottom')
+            .trigger('touchmove', 'bottom')
+            .trigger('touchmove', 'bottom')
+            .trigger('touchend', 'bottom');
 
-        cy.get('#tip-value').should('contain', '90');
+        cy.get('#tip-value').should('contain', '180');
 
         cy.get('#tip').click();
 
