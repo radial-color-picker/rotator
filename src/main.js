@@ -7,7 +7,6 @@ import { getRotationFromCoords, normalizeAngle, noop } from './utils.js';
 export default class Rotator {
     constructor(element, options) {
         this.active = false;
-        this._angle = 0;
         this.element = element;
         this.element.style.willChange = 'transform';
 
@@ -75,8 +74,9 @@ export default class Rotator {
 
     onRotationStart(event) {
         if (event.type === 'touchstart' || event.button === 0) {
-            this.initDrag();
+            this.active = true;
             this.onDragStart(event);
+            this.setAngleFromEvent(event);
         }
     }
 
@@ -92,20 +92,12 @@ export default class Rotator {
     onRotated(event) {
         if (this.active) {
             event.preventDefault();
-
-            const point = event.targetTouches ? event.targetTouches[0] : event;
-
-            this.updateAngleToMouse({
-                x: point.clientX,
-                y: point.clientY,
-            });
-
-            this.updateCSS();
-            this.onRotate(this._angle);
+            this.setAngleFromEvent(event);
         }
     }
 
-    setAngleFromEvent(ev) {
+    setAngleFromEvent(event) {
+        const ev = event.targetTouches ? event.targetTouches[0] : event;
         const newAngle = getRotationFromCoords(
             { x: ev.clientX, y: ev.clientY },
             this.element.getBoundingClientRect()
@@ -118,23 +110,6 @@ export default class Rotator {
 
         this.updateCSS();
         this.onRotate(this._angle);
-    }
-
-    updateAngleToMouse(newPoint) {
-        const newMouseAngle = getRotationFromCoords(newPoint, this.element.getBoundingClientRect());
-
-        if (!this.lastMouseAngle) {
-            this.lastElementAngle = this._angle;
-            this.lastMouseAngle = newMouseAngle;
-        }
-
-        this._angle = normalizeAngle(this.lastElementAngle + newMouseAngle - this.lastMouseAngle);
-    }
-
-    initDrag() {
-        this.active = true;
-        this.lastMouseAngle = undefined;
-        this.lastElementAngle = undefined;
     }
 
     updateCSS() {
