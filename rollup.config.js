@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
@@ -22,7 +22,7 @@ export default [
             format: 'umd',
             banner,
         },
-        plugins: [babel()],
+        plugins: [babel({ babelHelpers: 'bundled' })],
     },
     {
         input: 'src/main.js',
@@ -33,7 +33,7 @@ export default [
             banner,
         },
         plugins: [
-            babel(),
+            babel({ babelHelpers: 'bundled' }),
             terser({
                 output: {
                     comments(node, { value, type }) {
@@ -49,9 +49,9 @@ export default [
     {
         input: 'src/main.js',
         output: [
-            { file: outputDir + '.cjs.js', format: 'cjs', banner },
+            { file: outputDir + '.cjs.js', format: 'cjs', banner, exports: 'default' },
             { file: outputDir + '.esm.js', format: 'esm', banner },
         ],
-        plugins: [babel()],
+        plugins: [babel({ babelHelpers: 'bundled' })],
     },
 ];
